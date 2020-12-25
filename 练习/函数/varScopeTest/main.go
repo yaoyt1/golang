@@ -5,6 +5,6 @@ import (
 )
 
 func main() {
-	num := Test()
+	num := 0 //Test()
 	fmt.Println(num)
 }
