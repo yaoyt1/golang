@@ -1,3 +1,4 @@
+// 数组长度是数组类型的一部分
 package main
 
 import "fmt"
