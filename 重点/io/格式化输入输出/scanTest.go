@@ -1,3 +1,9 @@
+/*
+从终端获取输入
+fmt.Scanf 空格作为分隔符,遇到换行结束
+fmt.Scan  空格和换行作为分隔符
+fmt.Scanln 空格作为分隔符， 遇到换行结束
+*/
 package main
 
 import "fmt"
