@@ -1,0 +1,27 @@
+package main
+
+import (
+	"fmt"
+	"io"
+	"os"
+)
+
+func main() {
+	source, err := os.Open("重点/io/file_Copy/file_copy.go")
+	if err != nil {
+		fmt.Println("打开源文件报错，错误如下：", err)
+		return
+	}
+	defer source.Close()
+
+	dst, err := os.OpenFile("重点/io/file_Copy/file_copy.txt", os.O_WRONLY|os.O_CREATE, 0644)
+
+	if err != nil {
+		fmt.Println("打开目标文件报错，错误如下：", err)
+		return
+	}
+	defer dst.Close()
+
+	//copy函数
+	io.Copy(dst, source)
+}
