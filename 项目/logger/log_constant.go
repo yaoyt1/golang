@@ -9,3 +9,23 @@ const (
 	LogLevelError
 	LogLevelFatal
 )
+
+func getLoggerLevelText(level int) string {
+	switch level {
+	case LogLevelDebug:
+		return "debug"
+	case LogLevelTrace:
+		return "trace"
+	case LogLevelInfo:
+		return "info"
+	case LogLevelWarn:
+		return "warn"
+	case LogLevelError:
+		return "error"
+	case LogLevelFatal:
+		return "fatal"
+	default:
+		return "unknow"
+	}
+
+}

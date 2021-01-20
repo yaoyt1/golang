@@ -53,54 +53,59 @@ func (f *FileLogger) SetLevel(levl int) {
 //Debug 调试日志
 func (f *FileLogger) Debug(format string, args ...interface{}) {
 	if f.level < LogLevelDebug || f.level > LogLevelFatal {
-		f.level = LogLevelDebug
+		return
 	}
 
-	fmt.Fprintf(f.file, format+"\n", args...)
+	writeLog(f.file, format, args...)
 }
 
 //Trace 跟踪日志
 func (f *FileLogger) Trace(format string, args ...interface{}) {
 	if f.level < LogLevelTrace || f.level > LogLevelFatal {
-		f.level = LogLevelTrace
+		return
 	}
 
-	fmt.Fprintf(f.file, format+"\n", args...)
+	writeLog(f.file, format, args...)
 }
 
 //Info 访问日志
 func (f *FileLogger) Info(format string, args ...interface{}) {
 	if f.level < LogLevelInfo || f.level > LogLevelFatal {
-		f.level = LogLevelInfo
+		return
 	}
 
-	fmt.Fprintf(f.file, format+"\n", args...)
+	writeLog(f.file, format, args...)
 }
 
 //Warn 警告日志
 func (f *FileLogger) Warn(format string, args ...interface{}) {
 	if f.level < LogLevelWarn || f.level > LogLevelFatal {
-		f.level = LogLevelWarn
+		return
 	}
 
-	fmt.Fprintf(f.file, format+"\n", args...)
+	writeLog(f.file, format, args...)
 }
 
 //Error 错误日志
 func (f *FileLogger) Error(format string, args ...interface{}) {
 	if f.level < LogLevelError || f.level > LogLevelFatal {
-		f.level = LogLevelError
+		msg := fmt.Sprintf("当前日志级别为【%s】不能写入错误日志\n%s", getLoggerLevelText(f.level), format)
+		writeLog(f.file, msg, args...)
+		return
 	}
-	fmt.Fprintf(f.errorFile, format+"\n", args...)
+
+	writeLog(f.errorFile, format, args...)
 }
 
 //Fatal 严重错误日志
 func (f *FileLogger) Fatal(format string, args ...interface{}) {
-	if f.level < LogLevelFatal || f.level > LogLevelFatal {
-		f.level = LogLevelFatal
+	if f.level != LogLevelFatal {
+		msg := fmt.Sprintf("当前日志级别为【%s】不能写入错误日志\n%s", getLoggerLevelText(f.level), format)
+		writeLog(f.file, msg, args...)
+		return
 	}
 
-	fmt.Fprintf(f.errorFile, format+"\n", args...)
+	writeLog(f.errorFile, format, args...)
 }
 
 //Close 关闭文件

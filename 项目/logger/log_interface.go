@@ -11,3 +11,4 @@ type LoggerInterface interface {
 	Fatal(format string, args ...interface{})
 	Close()
 }
+
