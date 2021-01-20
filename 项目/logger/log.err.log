@@ -16,3 +16,12 @@
 2021-01-20 11:47:08.346	file_test.go	logger.TestDebug【line:13】
 报错
 
+2021-01-20 13:59:26.082	testing.go	testing.tRunner【line:909】
+报错
+
+2021-01-20 14:39:01.893	file_test.go	logger.TestFileDebugMap【line:39】
+Error用户【1】来自中国
+
+2021-01-20 14:39:01.893	file_test.go	logger.TestFileDebugMap【line:40】
+Fatal用户【1】来自中国
+

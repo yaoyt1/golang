@@ -11,7 +11,7 @@ import (
 //GetLineInfo 得到行数
 func getLineInfo() (fileName, funcName string, lineNo int) {
 	//得到报错的行数
-	pc, fileName, lineNo, ok := runtime.Caller(3)
+	pc, fileName, lineNo, ok := runtime.Caller(4)
 	if ok {
 		//得到方法名
 		funcName = runtime.FuncForPC(pc).Name()

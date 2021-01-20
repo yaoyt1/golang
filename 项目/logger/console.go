@@ -1,6 +1,7 @@
 package logger
 
 import (
+	"fmt"
 	"os"
 )
 
@@ -16,6 +17,27 @@ func NewConsoleLogger(level int) LoggerInterface {
 	}
 
 	return logger
+}
+
+//NewConsoleLoggerMap 结构体构造函数
+func NewConsoleLoggerMap(config map[string]string) (logger LoggerInterface, err error) {
+	if len(config) == 0 {
+		err = fmt.Errorf("参数为空")
+		return
+	}
+
+	loglevel, ok := config["log_level"]
+	if !ok {
+		err = fmt.Errorf("参数config中没有找到level")
+		return
+	}
+
+	level := getLoggerLevel(loglevel)
+	logger = &consoleLogger{
+		level: level,
+	}
+
+	return
 }
 
 //SetLevel 设置日志等级

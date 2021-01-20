@@ -40,3 +40,37 @@ file_test.go	logger.TestDebug:9用户【123】来自中国
 当前日志级别为【debug】不能写入错误日志
 报错
 
+2021-01-20 13:56:19.293	logger.go	logger.Debug【line:42】
+用户【[123]】来自中国
+
+2021-01-20 13:57:12.83	logger.go	logger.Debug【line:42】
+用户【[123]】来自中国
+
+2021-01-20 13:57:41.124	logger.go	logger.Debug【line:42】
+用户【[1]】来自中国
+
+2021-01-20 13:59:26.082	testing.go	testing.tRunner【line:909】
+用户【123】来自中国
+
+2021-01-20 13:59:26.082	testing.go	testing.tRunner【line:909】
+当前日志级别为【DEBUG】不能写入错误日志
+报错
+
+2021-01-20 14:02:27.765	file_test.go	logger.TestFileDebugMap【line:35】
+用户【[1]】来自中国
+
+2021-01-20 14:37:57.987	file_test.go	logger.TestFileDebugMap【line:35】
+Debug用户【1】来自中国
+
+2021-01-20 14:39:01.892	file_test.go	logger.TestFileDebugMap【line:35】
+Debug用户【1】来自中国
+
+2021-01-20 14:39:01.893	file_test.go	logger.TestFileDebugMap【line:36】
+Trace用户【1】来自中国
+
+2021-01-20 14:39:01.893	file_test.go	logger.TestFileDebugMap【line:37】
+Info用户【1】来自中国
+
+2021-01-20 14:39:01.893	file_test.go	logger.TestFileDebugMap【line:38】
+Warn用户【1】来自中国
+

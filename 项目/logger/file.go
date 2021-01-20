@@ -26,6 +26,43 @@ func NewFileLogger(level int, filePath, fileName string) LoggerInterface {
 	return logger
 }
 
+//NewFileLoggerMap FileLogger 结构体构造函数
+func NewFileLoggerMap(config map[string]string) (logger LoggerInterface, err error) {
+	if len(config) == 0 {
+		err = fmt.Errorf("参数为空")
+		return
+	}
+
+	loglevel, ok := config["log_level"]
+	if !ok {
+		err = fmt.Errorf("参数config中没有找到level")
+		return
+	}
+
+	filePath, ok := config["log_filePath"]
+	if !ok {
+		err = fmt.Errorf("参数config中没有找到filePath")
+		return
+	}
+
+	fileName, ok := config["log_fileName"]
+	if !ok {
+		err = fmt.Errorf("参数config中没有找到fileName")
+		return
+	}
+
+	level := getLoggerLevel(loglevel)
+	filelogger := &FileLogger{
+		level:    level,
+		filePath: filePath,
+		fileName: fileName,
+	}
+
+	filelogger.fileIinit()
+
+	return filelogger, err
+}
+
 //init 初始化打印日志需要的文件
 func (f *FileLogger) fileIinit() {
 	filePath := fmt.Sprintf("%s/%s.log", f.filePath, f.fileName)
