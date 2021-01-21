@@ -1,76 +1,12 @@
-用户【123】来自中国用户【123】来自中国用户【123】来自中国
-用户【123】来自中国
-19007-01-19 13:04-59.803
-/Users/yaoyt98/Library/Mobile Documents/com~apple~CloudDocs/code/git/github_golang/项目/logger/util.go	_/Users/yaoyt98/Library/Mobile_Documents/com~apple~CloudDocs/code/git/github_golang/%!e(MISSING)9%!a(MISSING)1%!b(MISSING)9%!e(MISSING)7%!b(MISSING)%!a(MISSING)e/logger.getLineInfo:8用户【123】来自中国
-19007-01-19 13:06-33.921
-util.go	logger.getLineInfo:11用户【123】来自中国
-19007-01-19 13:07-18.622
-file.go	logger.(*FileLogger).Debug:62用户【123】来自中国
-19007-01-19 13:07-50.938
-file_test.go	logger.TestDebug:9用户【123】来自中国
-19007-01-19 13:08-22.037	file_test.go	logger.TestDebug:9
-用户【123】来自中国
-19008-01-19 13:09-10.177	file_test.go	logger.TestDebug【line:9】
-用户【123】来自中国
-2021-01-19 13:09-29.189	file_test.go	logger.TestDebug【line:9】
-用户【123】来自中国
-2021-01-20 11:38-27.148	file.go	logger.(*FileLogger).Debug【line:59】
-用户【123】来自中国
-2021-01-20 11:38-42.687	file.go	logger.(*FileLogger).Debug【line:59】
-用户【123】来自中国
-2021-01-20 11:39-25.011	file_test.go	logger.TestDebug【line:9】
-用户【123】来自中国
-
-2021-01-20 11:39-33.267	file_test.go	logger.TestDebug【line:9】
-用户【123】来自中国
-
-2021-01-20 11:41:25.253	file_test.go	logger.TestDebug【line:9】
-用户【123】来自中国
-
-2021-01-20 11:42:48.775	file_test.go	logger.TestDebug【line:9】
-用户【123】来自中国
-
-2021-01-20 11:43:00.274	file_test.go	logger.TestDebug【line:9】
-用户【123】来自中国
-
-2021-01-20 11:47:08.345	file_test.go	logger.TestDebug【line:9】
-用户【123】来自中国
-
-2021-01-20 11:47:08.346	file_test.go	logger.TestDebug【line:11】
-当前日志级别为【debug】不能写入错误日志
-报错
-
-2021-01-20 13:56:19.293	logger.go	logger.Debug【line:42】
-用户【[123]】来自中国
-
-2021-01-20 13:57:12.83	logger.go	logger.Debug【line:42】
-用户【[123]】来自中国
-
-2021-01-20 13:57:41.124	logger.go	logger.Debug【line:42】
-用户【[1]】来自中国
-
-2021-01-20 13:59:26.082	testing.go	testing.tRunner【line:909】
-用户【123】来自中国
-
-2021-01-20 13:59:26.082	testing.go	testing.tRunner【line:909】
-当前日志级别为【DEBUG】不能写入错误日志
-报错
-
-2021-01-20 14:02:27.765	file_test.go	logger.TestFileDebugMap【line:35】
-用户【[1]】来自中国
-
-2021-01-20 14:37:57.987	file_test.go	logger.TestFileDebugMap【line:35】
+【DEBUG】2021-01-21 22:23:40.71	file_test.go	logger.TestFileDebugMap【line:37】
 Debug用户【1】来自中国
 
-2021-01-20 14:39:01.892	file_test.go	logger.TestFileDebugMap【line:35】
-Debug用户【1】来自中国
-
-2021-01-20 14:39:01.893	file_test.go	logger.TestFileDebugMap【line:36】
+【TRACE】2021-01-21 22:23:40.71	file_test.go	logger.TestFileDebugMap【line:38】
 Trace用户【1】来自中国
 
-2021-01-20 14:39:01.893	file_test.go	logger.TestFileDebugMap【line:37】
+【INFO】2021-01-21 22:23:40.71	file_test.go	logger.TestFileDebugMap【line:39】
 Info用户【1】来自中国
 
-2021-01-20 14:39:01.893	file_test.go	logger.TestFileDebugMap【line:38】
+【WARN】2021-01-21 22:23:40.71	file_test.go	logger.TestFileDebugMap【line:40】
 Warn用户【1】来自中国
 

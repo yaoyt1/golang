@@ -72,6 +72,7 @@ func Fatal(format string, args ...interface{}) {
 	log.Fatal(format, args...)
 }
 
+//Close 关闭
 func Close() {
 	log.Close()
 }

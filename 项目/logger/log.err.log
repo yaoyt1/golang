@@ -1,27 +1,6 @@
-报错报错报错
-报错
-报错
-报错
-报错
-报错
-报错
-报错
-报错
-2021-01-20 11:42:48.775	file_test.go	logger.TestDebug【line:12】
-报错
-
-2021-01-20 11:43:00.275	file_test.go	logger.TestDebug【line:12】
-报错
-
-2021-01-20 11:47:08.346	file_test.go	logger.TestDebug【line:13】
-报错
-
-2021-01-20 13:59:26.082	testing.go	testing.tRunner【line:909】
-报错
-
-2021-01-20 14:39:01.893	file_test.go	logger.TestFileDebugMap【line:39】
+【ERROR】2021-01-21 22:23:40.71	file_test.go	logger.TestFileDebugMap【line:41】
 Error用户【1】来自中国
 
-2021-01-20 14:39:01.893	file_test.go	logger.TestFileDebugMap【line:40】
+【FATAL】2021-01-21 22:23:40.71	file_test.go	logger.TestFileDebugMap【line:42】
 Fatal用户【1】来自中国
 

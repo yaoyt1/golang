@@ -12,15 +12,15 @@ type consoleLogger struct {
 
 //NewConsoleLogger 结构体构造函数
 func NewConsoleLogger(level int) LoggerInterface {
-	logger := &consoleLogger{
+	log := &consoleLogger{
 		level: level,
 	}
 
-	return logger
+	return log
 }
 
 //NewConsoleLoggerMap 结构体构造函数
-func NewConsoleLoggerMap(config map[string]string) (logger LoggerInterface, err error) {
+func NewConsoleLoggerMap(config map[string]string) (log LoggerInterface, err error) {
 	if len(config) == 0 {
 		err = fmt.Errorf("参数为空")
 		return
@@ -33,11 +33,16 @@ func NewConsoleLoggerMap(config map[string]string) (logger LoggerInterface, err 
 	}
 
 	level := getLoggerLevel(loglevel)
-	logger = &consoleLogger{
+	log = &consoleLogger{
 		level: level,
 	}
 
 	return
+}
+
+//LoggerInit 空
+func (f *consoleLogger) LoggerInit() {
+
 }
 
 //SetLevel 设置日志等级
@@ -51,7 +56,7 @@ func (f *consoleLogger) Debug(format string, args ...interface{}) {
 		return
 	}
 
-	writeLog(os.Stdout, format, args...)
+	consoleWriteLog(os.Stdout, f.level, format, args...)
 }
 
 //Trace 跟踪日志
@@ -60,7 +65,7 @@ func (f *consoleLogger) Trace(format string, args ...interface{}) {
 		return
 	}
 
-	writeLog(os.Stdout, format, args...)
+	consoleWriteLog(os.Stdout, f.level, format, args...)
 }
 
 //Info 访问日志
@@ -69,7 +74,7 @@ func (f *consoleLogger) Info(format string, args ...interface{}) {
 		return
 	}
 
-	writeLog(os.Stdout, format, args...)
+	consoleWriteLog(os.Stdout, f.level, format, args...)
 }
 
 //Warn 警告日志
@@ -78,7 +83,7 @@ func (f *consoleLogger) Warn(format string, args ...interface{}) {
 		return
 	}
 
-	writeLog(os.Stdout, format, args...)
+	consoleWriteLog(os.Stdout, f.level, format, args...)
 }
 
 //Error 错误日志
@@ -87,7 +92,7 @@ func (f *consoleLogger) Error(format string, args ...interface{}) {
 		return
 	}
 
-	writeLog(os.Stdout, format, args...)
+	consoleWriteLog(os.Stdout, f.level, format, args...)
 }
 
 //Fatal 严重错误日志
@@ -96,7 +101,7 @@ func (f *consoleLogger) Fatal(format string, args ...interface{}) {
 		return
 	}
 
-	writeLog(os.Stdout, format, args...)
+	consoleWriteLog(os.Stdout, f.level, format, args...)
 }
 
 //Close 关闭文件
