@@ -11,25 +11,25 @@ import (
 
 var serializationKeyWord = "ini"
 
-//ConfigFileSerialization 序列化文件配置
-func ConfigFileSerialization(filepath string, result interface{}) (err error) {
+//UnConfigFileSerialization 反序列化文件配置
+func UnConfigFileSerialization(filepath string, result interface{}) (err error) {
 	fileData, err := ioutil.ReadFile(filepath)
 	if err != nil {
 		return
 	}
-	err = ConfigSerialization(fileData, result)
+	err = UnConfigSerialization(fileData, result)
 	return
 }
 
 /**
- * ConfigSerialization 序列化
+ * ConfigSerialization 反序列化
  * @author yaoyt98
  * @description //TODO
  * @date 7:48 下午 2021/1/30
  * @param
  * @return
  **/
-func ConfigSerialization(cofigData []byte, result interface{}) (err error) {
+func UnConfigSerialization(cofigData []byte, result interface{}) (err error) {
 	//判断传出参数
 	resultType := reflect.TypeOf(result)
 	if resultType.Kind() != reflect.Ptr {
@@ -168,12 +168,56 @@ func ConfigSerialization(cofigData []byte, result interface{}) (err error) {
 	return
 }
 
-//UnConfigFileSerialization 反序列化文件配置
-func UnConfigFileSerialization() {
+//ConfigFileSerialization 序列化文件配置
+func ConfigFileSerialization(filepath string, data interface{}) (err error) {
+	result, err := ConfigSerialization(data)
 
+	if err != nil {
+		return
+	}
+
+	return ioutil.WriteFile(filepath, result, 0766)
 }
 
-//UnConfigSerialization 反序列化
-func UnConfigSerialization() {
+//ConfigSerialization 反序列化
+func ConfigSerialization(data interface{}) (result []byte, err error) {
+	dataType := reflect.TypeOf(data)
+	if dataType.Kind() != reflect.Struct {
+		err = errors.New("请输入指针数据结构")
+		return nil, err
+	}
 
+	dataVal := reflect.ValueOf(data)
+	var config []string //配置文件数组
+	for i := 0; i < dataType.NumField(); i++ {
+		setionTypeFeild := dataType.Field(i)
+		setionVal := dataVal.Field(i)
+
+		setionType := setionTypeFeild.Type
+		if setionType.Kind() != reflect.Struct {
+			continue
+		}
+
+		tagVal := setionTypeFeild.Tag.Get(serializationKeyWord)
+		if len(tagVal) == 0 {
+			continue
+		}
+
+		config = append(config, fmt.Sprintf("\n[%s]\n", tagVal))
+		for j := 0; j < setionType.NumField(); j++ {
+			keyfield := setionType.Field(j)
+			keyTag := keyfield.Tag.Get(serializationKeyWord)
+
+			if len(keyTag) == 0 {
+				continue
+			}
+			keyVal := setionVal.Field(j).Interface()
+			config = append(config, fmt.Sprintf("%s=%v\n", keyTag, keyVal))
+		}
+	}
+
+	for _, configVal := range config {
+		result = append(result, []byte(configVal)...)
+	}
+	return
 }

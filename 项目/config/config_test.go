@@ -26,9 +26,12 @@ type MysqlConfig struct {
 
 func TestConfig(t *testing.T) {
 	var config1 Config
-	err := ConfigFileSerialization("config.ini", &config1)
+	err := UnConfigFileSerialization("config.ini", &config1)
 	if err != nil {
 		t.Errorf("反序列配置文件错误，%v", err)
 	}
 	fmt.Printf("打印配置文件结构体：%#v\n", config1)
+
+	_ = ConfigFileSerialization("config1.ini", config1)
+	fmt.Println("序列化数据完成")
 }
