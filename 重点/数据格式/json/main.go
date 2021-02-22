@@ -12,17 +12,18 @@ import (
 	"io/ioutil"
 )
 
+//这里结构的tag决定json 文件中的key
 type jsondatas struct {
-	Id      int
-	Version string
-	Data    []*jsondata
+	Id      int         `json:"id"`
+	Version string      `josn:"version"`
+	Data    []*jsondata `json:"data"`
 }
 
 type jsondata struct {
-	Id    int
-	Name  string
-	Age   int
-	Class string
+	Id    int    `json:"id"`
+	Name  string `json:"name"`
+	Age   int    `json:"age"`
+	Class string `json:"class"`
 }
 
 func main() {
