@@ -183,7 +183,7 @@ func dbTrian() {
 		return
 	}
 
-	var sqlStr string = "update dept set  DNAME1='y12' where DEPTNO=?"
+	var sqlStr string = "update dept set  DNAME='y12' where DEPTNO=?"
 	_, err = conn.Exec(sqlStr, 6)
 
 	if err != nil {
