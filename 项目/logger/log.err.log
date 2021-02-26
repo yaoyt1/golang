@@ -1,6 +1,0 @@
-【ERROR】2021-01-21 22:23:40.71	file_test.go	logger.TestFileDebugMap【line:41】
-Error用户【1】来自中国
-
-【FATAL】2021-01-21 22:23:40.71	file_test.go	logger.TestFileDebugMap【line:42】
-Fatal用户【1】来自中国
-
