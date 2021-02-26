@@ -34,19 +34,19 @@
 			<input id="author" name="author" type="text" value="" size="30" maxlength="245" required="required">
 		</div> 
 		<div style="margin:auto;height:40px;width:80%; line-height:40px">
-				<label for="author" >文章标题 <span class="required">*</span></label>
-				<input id="author" name="title" type="text" value="" size="30" maxlength="245" required="required">
+				<label for="title" >文章标题 <span class="required">*</span></label>
+				<input id="title" name="title" type="text" value="" size="30" maxlength="245" required="required">
 			</div> 
 		<div style="margin:auto;width:80%;align:center;">
-				<label for="author" style="margin:0px 0px 0px 0px;line-height:40px;">文章分类 <span class="required">*</span></label>
-				<select name="category_id">
+				<label for="categoryid" style="margin:0px 0px 0px 0px;line-height:40px;">文章分类 <span class="required">*</span></label>
+				<select id="categoryid" name="categoryId">
 					{{range .}} 
 						<option value="{{.CategoryId}}">{{.CategoryName}}</option>
 					{{end}}					
 				</select>
 		</div>
 		<div style="margin:auto;width:80%;align:center;">
-				<label for="author" style="margin:0px 0px 0px 0px;line-height:40px;">文章内容 <span class="required">*</span></label>
+				<label for="editor" style="margin:0px 0px 0px 0px;line-height:40px;">文章内容 <span class="required">*</span></label>
 				<textarea name="content" id="editor" style="width:80%">This is some sample content.</textarea>
 		</div>
 		<div  style="margin:auto;height:40px;width:80%; line-height:40px">

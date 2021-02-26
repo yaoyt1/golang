@@ -2,6 +2,8 @@ package logic
 
 import (
 	"fmt"
+	"math"
+	"strings"
 	"yytGithub/project/blogger/dal/db"
 	"yytGithub/project/blogger/model"
 )
@@ -49,6 +51,7 @@ func GetAricleList(pageNum, pageSize int) (articlerecordItems []*model.ArticleRe
 	return
 }
 
+//getAricleListCategoryId
 func getAricleListCategoryId(infoModels []*model.ArticleInfoModel) (ids []int64) {
 label:
 	for _, item := range infoModels {
@@ -79,5 +82,42 @@ func GetAricleDetail(id int64) (articleDetail *model.ArticleDetailModel, err err
 		err = fmt.Errorf("根据文章(%d)未查询文章。", id)
 		return
 	}
+	return
+}
+
+//InserAricle
+func InserAricle(author, title, content string, categoryId int64) (err error) {
+	if len(strings.TrimSpace(author)) == 0 {
+		err = fmt.Errorf("作者不能为空")
+		return
+	}
+
+	if len(strings.TrimSpace(title)) == 0 {
+		err = fmt.Errorf("标题不能为空")
+		return
+	}
+
+	if len(strings.TrimSpace(content)) == 0 {
+		err = fmt.Errorf("内容不能为空")
+		return
+	}
+
+	if categoryId < 0 {
+		err = fmt.Errorf("请选择分类id")
+		return
+	}
+
+	articledatail := new(model.ArticleDetailModel)
+	articledatail.UserName = author
+	articledatail.Title = title
+	articledatail.CategoryId = categoryId
+	articledatail.Content = content
+
+	contentUtf8 := []rune(content)
+	minSummary := int(math.Min(float64(len(contentUtf8)), 128.0))
+	articledatail.Summary = string(contentUtf8[:minSummary])
+
+	articleId, err := db.InstallArticle(articledatail)
+	fmt.Printf("新增文章成功，文章Id：%d\n", articleId)
 	return
 }

@@ -20,6 +20,7 @@ func main() {
 	route.GET("/", controller.IndexHandler)
 	route.GET("/article/detail",controller.ArticleDetailHandler)
 	route.GET("/article/new",controller.NewArticleHandler)
+	route.POST("/article/submit/",controller.InserArticleHandler)
 
 	_ = route.Run(":8080")
 }
