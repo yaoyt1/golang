@@ -19,6 +19,8 @@ func main() {
 	route.Static("/static/", "project/blogger/static")
 	route.GET("/", controller.IndexHandler)
 	route.GET("/article/detail",controller.ArticleDetailHandler)
+	route.GET("/article/new",controller.NewArticleHandler)
+
 	_ = route.Run(":8080")
 }
 

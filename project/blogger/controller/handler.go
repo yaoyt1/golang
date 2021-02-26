@@ -35,3 +35,13 @@ func ArticleDetailHandler(ctx *gin.Context) {
 	}
 	ctx.HTML(http.StatusOK, "views/detail.html", articleDetailItem)
 }
+
+func NewArticleHandler(ctx *gin.Context) {
+	categoryItems, err := logic.GetAllCategory()
+	if err != nil {
+		fmt.Printf("获取分类失败，错误如下：%s\n", err)
+		ctx.HTML(http.StatusInternalServerError, "views/500.html", nil)
+		return
+	}
+	ctx.HTML(http.StatusOK, "views/post_article.html", categoryItems)
+}
