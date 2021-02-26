@@ -35,9 +35,10 @@ func SelectArticleByCategoryIdList(categoryid, pageNum, pageSize int) (articlInf
 
 //SelectArticleDetailById 获取文章详细
 func SelectArticleDetailById(categoryid int64) (articlDetailItem *model.ArticleDetailModel, err error) {
+	articlDetailItem = new(model.ArticleDetailModel)
 	sqlStr := `select id, categoryid, content, title, summary, viewcount, commentcount, status,
-       username, createtime, updatetime from Article where id=? `
+       username, createtime, updatetime from Article where status=1 and id=? `
 
-	DB.Get(&articlDetailItem, sqlStr, categoryid)
+	err = DB.Get(articlDetailItem, sqlStr, categoryid)
 	return
 }

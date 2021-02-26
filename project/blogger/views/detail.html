@@ -44,40 +44,40 @@ window.onload = function ()
   </div>
 </header>
 <article>
-  <h1 class="t_nav"><span>您现在的位置是：首页 > {{.detail.CategoryName}}</span>
+  <h1 class="t_nav"><span>您现在的位置是：首页 > {{.CategoryId}}</span>
   </h1>
   <div class="infos">
     <div class="newsview">
-      <h3 class="news_title">{{.detail.Title}}</h3>
+      <h3 class="news_title">{{.Title}}</h3>
       <div class="news_author">
         <span class="au01">
-          <a href="mailto:dancesmiling@qq.com">{{.detail.Username}}</a>
-        </span><span class="au02">{{.detail.CreateTime}}</span>
+          <a href="mailto:dancesmiling@qq.com">{{.UserName}}</a>
+        </span><span class="au02">{{.CreateTime}}</span>
            <span class="au03">共<b>
              <script src="/view/add_count/?article_id={{.Id}}}">
-             </script>{{.detail.ViewCount}}</b>人围观</span>
+             </script>{{.ViewCount}}</b>人围观</span>
              </div>
       
       
-      <div class="news_infos">{{.detail.Content}}</div>
+      <div class="news_infos">{{.Content}}</div>
     </div>
     <div class="share"> </div>
-    <div class="nextinfo">
-      <p>上一篇：
-        {{if eq .prev.ArticleId -1}}
-        没有上一篇文章了
-        {{else}}
-        <a href="/article/detail/?article_id={{.prev.ArticleId}}">{{.prev.Title}}</a>
-        {{end}}
-      </p>
-      <p>下一篇：
-          {{if eq .next.ArticleId -1}}
-          没有下一篇文章了
-          {{else}}
-          <a href="/article/detail/?article_id={{.next.ArticleId}}">{{.next.Title}}</a>
-          {{end}}
-      </p>
-    </div>
+<!--    <div class="nextinfo">-->
+<!--      <p>上一篇：-->
+<!--        {{if eq .prev.ArticleId -1}}-->
+<!--        没有上一篇文章了-->
+<!--        {{else}}-->
+<!--        <a href="/article/detail/?article_id={{.prev.ArticleId}}">{{.prev.Title}}</a>-->
+<!--        {{end}}-->
+<!--      </p>-->
+<!--      <p>下一篇：-->
+<!--          {{if eq .next.ArticleId -1}}-->
+<!--          没有下一篇文章了-->
+<!--          {{else}}-->
+<!--          <a href="/article/detail/?article_id={{.next.ArticleId}}">{{.next.Title}}</a>-->
+<!--          {{end}}-->
+<!--      </p>-->
+<!--    </div>-->
     <div class="otherlink">
       <h2>相关文章</h2>
       
@@ -87,21 +87,21 @@ window.onload = function ()
         {{end}}
       </ul>
     </div>
-    <div>
-        <hr>
-        <h2>评论列表</h2>
-        {{range .comment_list}}
-        <li> 
-          <h3 class="blogtitle">作者:{{.Username}}</h3>
-          <div class="bloginfo">
-            <p>{{.Content}}</p>
-          </div>
-          <div class="autor">
-            
-            <span class="dtime">{{.CreateTime}}</span>
-        </li>
-        {{end}}
-    </div>
+<!--    <div>-->
+<!--        <hr>-->
+<!--        <h2>评论列表</h2>-->
+<!--        {{range .comment_list}}-->
+<!--        <li> -->
+<!--          <h3 class="blogtitle">作者:{{.Username}}</h3>-->
+<!--          <div class="bloginfo">-->
+<!--            <p>{{.Content}}</p>-->
+<!--          </div>-->
+<!--          <div class="autor">-->
+<!--            -->
+<!--            <span class="dtime">{{.CreateTime}}</span>-->
+<!--        </li>-->
+<!--        {{end}}-->
+<!--    </div>-->
     <div class="news_pl">
       <h2>文章评论</h2>
       
@@ -127,15 +127,15 @@ window.onload = function ()
                               </div><div>
                                 <input id="author" name="author" type="text" value="" size="30" maxlength="245" required="required">
                               </div> </p>
-                          <p class="comment-form-email"><div><label for="email">电子邮件 <span class="required">*</span></label></div>
-                            <div>
-                               <input id="email" name="email" type="email" value="" size="30" maxlength="100" aria-describedby="email-notes" required="required">
-                               <input id="email" name="article_id" type="hidden" value="{{.article_id}}" size="30" maxlength="100" aria-describedby="email-notes" required="required">
-                              </div>
-                              </p>
-                         
-                      
-                          <p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="发表评论"> <input type="hidden" name="comment_post_ID" value="2" id="comment_post_ID">
+<!--                          <p class="comment-form-email"><div><label for="email">电子邮件 <span class="required">*</span></label></div>-->
+<!--                            <div>-->
+<!--                               <input id="email" name="email" type="email" value="" size="30" maxlength="100" aria-describedby="email-notes" required="required">-->
+<!--                               <input id="email" name="article_id" type="hidden" value="{{.article_id}}" size="30" maxlength="100" aria-describedby="email-notes" required="required">-->
+<!--                              </div>-->
+<!--                              </p>-->
+<!--                         -->
+<!--                      -->
+<!--                          <p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="发表评论"> <input type="hidden" name="comment_post_ID" value="2" id="comment_post_ID">-->
                           <input type="hidden" name="comment_parent" id="comment_parent" value="0">
                           </p>
                             </form>
@@ -156,9 +156,9 @@ window.onload = function ()
         <li><a href="#">关于我</a></li>
         <li><a href="list.html">学无止境</a>
           <ul>
-            {{range .category}}
-            <li><a href="/category/?category_id={{.CategoryId}}">{{.CategoryName}}</a></li>
-            {{end}}
+<!--            {{range .category}}-->
+<!--            <li><a href="/category/?category_id={{.CategoryId}}">{{.CategoryName}}</a></li>-->
+<!--            {{end}}-->
           </ul>
         </li>
       </ul>

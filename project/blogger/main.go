@@ -18,6 +18,7 @@ func main() {
 	route.LoadHTMLGlob("project/blogger/views/*")
 	route.Static("/static/", "project/blogger/static")
 	route.GET("/", controller.IndexHandler)
+	route.GET("/article/detail",controller.ArticleDetailHandler)
 	_ = route.Run(":8080")
 }
 

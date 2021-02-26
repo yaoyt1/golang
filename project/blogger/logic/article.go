@@ -10,6 +10,7 @@ import (
 func GetAricleList(pageNum, pageSize int) (articlerecordItems []*model.ArticleRecordModel, err error) {
 	if pageNum < 0 || pageSize <= 0 {
 		fmt.Printf("非法参数pageNum[%d],pageSize[%d]", pageNum, pageSize)
+		return
 	}
 
 	articlInfoItems, err := db.SelectArticleList(pageNum, pageSize)
@@ -58,6 +59,25 @@ label:
 			}
 		}
 		ids = append(ids, categoryId)
+	}
+	return
+}
+
+//GetAricleDetail 根据文章ID获取文章内容
+func GetAricleDetail(id int64) (articleDetail *model.ArticleDetailModel, err error) {
+	if id < 0 {
+		err = fmt.Errorf("无效的文章Id(%d)", id)
+		return
+	}
+
+	articleDetail, err = db.SelectArticleDetailById(id)
+	if err != nil {
+		return
+	}
+
+	if articleDetail == nil {
+		err = fmt.Errorf("根据文章(%d)未查询文章。", id)
+		return
 	}
 	return
 }

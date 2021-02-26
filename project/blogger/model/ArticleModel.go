@@ -19,7 +19,7 @@ type ArticleInfoModel struct {
 //ArticleDetailModel 文章内容信息
 type ArticleDetailModel struct {
 	ArticleInfoModel
-	Content string `db:"Content"`
+	Content string `db:"content"`
 }
 
 //ArticleRecordModel 文章记录model
