@@ -51,11 +51,18 @@ func ArticleDetailHandler(ctx *gin.Context) {
 		fmt.Printf("获取上下文章失败：%s\n", err)
 	}
 
+	//查询评论列表
+	commentItems, err := logic.GetComment(articleId)
+	if err != nil {
+		fmt.Printf("获取上下文章失败：%s\n", err)
+	}
+
 	var m = make(map[string]interface{}, 5)
 	m["articleDetailItem"] = articleDetailItem
 	m["aboutArticleitems"] = aboutArticleitems
 	m["upArticleInof"] = upArticleInof
 	m["downArticleInof"] = downArticleInof
+	m["commentItems"] = commentItems
 
 	ctx.HTML(http.StatusOK, "views/detail.html", m)
 }
@@ -120,5 +127,34 @@ func InserLeaveHandler(ctx *gin.Context) {
 		ctx.HTML(http.StatusInternalServerError, "views/500.html", err)
 		return
 	}
-	//ctx.Redirect(http.StatusMovedPermanently, "leave/new")
+
+	//todo : 提交成功，重定向本页
+	ctx.Redirect(http.StatusMovedPermanently, "leave/index")
+}
+
+//InserCommentHandler 发表评论
+func InserCommentHandler(ctx *gin.Context) {
+	userName := ctx.PostForm("author")
+	email := ctx.PostForm("email")
+	articleIdStr := ctx.PostForm("articleId")
+	comment := ctx.PostForm("comment")
+
+	articleId, err := strconv.ParseInt(articleIdStr, 10, 64)
+	if err != nil {
+		fmt.Printf("非法文章Id:%d\n", err)
+		ctx.HTML(http.StatusInternalServerError, "views/500.html", nil)
+		return
+	}
+
+	commentId, err := logic.InsertComment(userName, email, comment, articleId)
+	if err != nil {
+		fmt.Printf("评论失败:%d\n", err)
+		ctx.HTML(http.StatusInternalServerError, "views/500.html", nil)
+		return
+	}
+	fmt.Printf("评论成功：%d\n", commentId)
+
+	//todo : 提交成功，重定向本页
+	url := fmt.Sprintf("/article/detail?articleId=%d", articleId)
+	ctx.Redirect(http.StatusMultipleChoices, url)
 }
