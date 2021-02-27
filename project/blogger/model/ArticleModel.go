@@ -20,10 +20,11 @@ type ArticleInfoModel struct {
 type ArticleDetailModel struct {
 	ArticleInfoModel
 	Content string `db:"content"`
+	CategoryModel
 }
 
-//ArticleRecordModel 文章记录model
-type ArticleRecordModel struct {
-	ArticleInfoModel
-	CategoryModel
+//AboutArticleModel 相关文章ID
+type AboutArticleModel struct {
+	Id    string `db:"id"`
+	Title string `db:"title"`
 }

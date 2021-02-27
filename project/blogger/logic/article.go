@@ -9,7 +9,7 @@ import (
 )
 
 //GetAricleList 获取文章列表
-func GetAricleList(pageNum, pageSize int) (articlerecordItems []*model.ArticleRecordModel, err error) {
+func GetAricleList(pageNum, pageSize int) (articlerecordItems []*model.ArticleDetailModel, err error) {
 	if pageNum < 0 || pageSize <= 0 {
 		fmt.Printf("非法参数pageNum[%d],pageSize[%d]", pageNum, pageSize)
 		return
@@ -38,7 +38,7 @@ func GetAricleList(pageNum, pageSize int) (articlerecordItems []*model.ArticleRe
 
 	//聚合数据
 	for _, articlInfoItem := range articlInfoItems {
-		articleRecord := &model.ArticleRecordModel{
+		articleRecord := &model.ArticleDetailModel{
 			ArticleInfoModel: *articlInfoItem,
 		}
 		for _, categoryItem := range categoryItems {
@@ -73,6 +73,7 @@ func GetAricleDetail(id int64) (articleDetail *model.ArticleDetailModel, err err
 		return
 	}
 
+	//获取文章信息
 	articleDetail, err = db.SelectArticleDetailById(id)
 	if err != nil {
 		return
@@ -82,10 +83,18 @@ func GetAricleDetail(id int64) (articleDetail *model.ArticleDetailModel, err err
 		err = fmt.Errorf("根据文章(%d)未查询文章。", id)
 		return
 	}
+
+	//获取分类信息
+	categoryInfo, err := db.SelectCategoryById(articleDetail.ArticleInfoModel.CategoryId)
+	if err != nil {
+		return
+	}
+
+	articleDetail.CategoryModel = *categoryInfo
 	return
 }
 
-//InserAricle
+//InserAricle 新增文章
 func InserAricle(author, title, content string, categoryId int64) (err error) {
 	if len(strings.TrimSpace(author)) == 0 {
 		err = fmt.Errorf("作者不能为空")
@@ -110,7 +119,7 @@ func InserAricle(author, title, content string, categoryId int64) (err error) {
 	articledatail := new(model.ArticleDetailModel)
 	articledatail.UserName = author
 	articledatail.Title = title
-	articledatail.CategoryId = categoryId
+	articledatail.ArticleInfoModel.CategoryId = categoryId
 	articledatail.Content = content
 
 	contentUtf8 := []rune(content)
@@ -119,5 +128,14 @@ func InserAricle(author, title, content string, categoryId int64) (err error) {
 
 	articleId, err := db.InstallArticle(articledatail)
 	fmt.Printf("新增文章成功，文章Id：%d\n", articleId)
+	return
+}
+
+//GetAboutAricle 查询相关文章
+func GetAboutAricle(articleId int64) (aboutArticleItems []*model.AboutArticleModel, err error) {
+	aboutArticleItems, err = db.SelectAboutArticleList(articleId, 10)
+	if err != nil {
+		return
+	}
 	return
 }

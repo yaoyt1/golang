@@ -22,7 +22,8 @@ func SelectCategoryByIds(ids []int64) (categoryItems []*model.CategoryModel, err
 }
 
 func SelectCategoryById(id int64) (category *model.CategoryModel, err error) {
+	category = new(model.CategoryModel)
 	sqlStr := "select  id, categoryname, categoryno from Category where id =?"
-	err = DB.Get(&category, sqlStr, id)
+	err = DB.Get(category, sqlStr, id)
 	return
 }

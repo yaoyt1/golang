@@ -29,13 +29,27 @@ func ArticleDetailHandler(ctx *gin.Context) {
 		return
 	}
 
+	//查询文章内容
 	articleDetailItem, err := logic.GetAricleDetail(articleId)
 	if err != nil {
 		fmt.Printf("查询文章内容报错：%s\n", err)
 		ctx.HTML(http.StatusInternalServerError, "views/500.html", nil)
 		return
 	}
-	ctx.HTML(http.StatusOK, "views/detail.html", articleDetailItem)
+
+	//查询相关文章
+	aboutArticleitems, err := logic.GetAboutAricle(articleId)
+	if err != nil {
+		fmt.Printf("查询文章内容报错：%s\n", err)
+		ctx.HTML(http.StatusInternalServerError, "views/500.html", nil)
+		return
+	}
+
+	var m = make(map[string]interface{}, 5)
+	m["articleDetailItem"] = articleDetailItem
+	m["aboutArticleitems"] = aboutArticleitems
+
+	ctx.HTML(http.StatusOK, "views/detail.html", m)
 }
 
 //NewArticleHandler 新增文章加载时候的
