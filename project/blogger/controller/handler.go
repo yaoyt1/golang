@@ -45,9 +45,17 @@ func ArticleDetailHandler(ctx *gin.Context) {
 		return
 	}
 
+	//查询上下文章
+	upArticleInof, downArticleInof, err := logic.GetUpDownAricle(articleId)
+	if err != nil {
+		fmt.Printf("获取上下文章失败：%s\n", err)
+	}
+
 	var m = make(map[string]interface{}, 5)
 	m["articleDetailItem"] = articleDetailItem
 	m["aboutArticleitems"] = aboutArticleitems
+	m["upArticleInof"] = upArticleInof
+	m["downArticleInof"] = downArticleInof
 
 	ctx.HTML(http.StatusOK, "views/detail.html", m)
 }

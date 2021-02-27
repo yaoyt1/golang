@@ -33,7 +33,7 @@ func TestInstallArticle(t *testing.T) {
 func TestSelectAboutArticleList(t *testing.T) {
 	items, err := SelectAboutArticleList(1, 10)
 	if err != nil {
-		t.Logf("查询相关文章失败：%s", err)
+		t.Errorf("查询相关文章失败：%s", err)
 		return
 	}
 	t.Logf("查询相关文章成功，%#v", items)
@@ -42,8 +42,17 @@ func TestSelectAboutArticleList(t *testing.T) {
 func TestSelectArticleDetailById(t *testing.T) {
 	items, err := SelectArticleDetailById(1)
 	if err != nil {
-		t.Logf("查询文章详情失败：%s", err)
+		t.Errorf("查询文章详情失败：%s", err)
 		return
 	}
 	t.Logf("查询文章详情成功，%#v", items)
+}
+
+func TestSelectUpDownArticle(t *testing.T) {
+	upInfo, downInfo, err := SelectUpDownArticle(1)
+	if err != nil {
+		t.Errorf("查询上下文章失败：%s", err)
+		return
+	}
+	t.Logf("查询上下文章成功，upInfo:%#v\ndownInfo:%#v", upInfo, downInfo)
 }

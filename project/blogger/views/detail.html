@@ -61,11 +61,17 @@ window.onload = function ()
     </div>
     <div class="share"> </div>
     <div class="nextinfo">
-      <p>上一篇：
-
+      <p>
+        {{if ne .upArticleInof.Id -1 }}
+        上一篇：
+        <a href="/article/detail/?articleId={{.upArticleInof.Id}}">{{.upArticleInof.Title}}</a>
+        {{end}}
       </p>
-      <p>下一篇：
-
+      <p>
+        {{if ne .downArticleInof.Id -1 }}
+        下一篇：
+        <a href="/article/detail/?articleId={{.downArticleInof.Id}}">{{.downArticleInof.Title}}</a>
+        {{end}}
       </p>
     </div>
     <div class="otherlink">

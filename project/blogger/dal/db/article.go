@@ -47,3 +47,18 @@ func SelectAboutArticleList(articleId int64, pageSize int) (items []*model.About
 	err = DB.Select(&items, sqlStr, categoryId, articleId, pageSize)
 	return
 }
+
+//SelectUpDownArticle 获取上下两篇文章
+func SelectUpDownArticle(articleId int64) (upArticle, downArticle *model.AboutArticleModel, err error) {
+	upArticle = new(model.AboutArticleModel)
+	upArticle.Id = -1
+	downArticle = new(model.AboutArticleModel)
+	downArticle.Id = -1
+
+	sqlStr := "select id,title from Article where id <?  order by id desc limit 1"
+	err = DB.Get(upArticle, sqlStr, articleId)
+
+	sqlStr = "select id,title from Article where id >? limit 1"
+	err = DB.Get(downArticle, sqlStr, articleId)
+	return
+}

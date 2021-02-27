@@ -134,8 +134,10 @@ func InserAricle(author, title, content string, categoryId int64) (err error) {
 //GetAboutAricle 查询相关文章
 func GetAboutAricle(articleId int64) (aboutArticleItems []*model.AboutArticleModel, err error) {
 	aboutArticleItems, err = db.SelectAboutArticleList(articleId, 10)
-	if err != nil {
-		return
-	}
+	return
+}
+
+func GetUpDownAricle(articleId int64) (upArticleInof, downArticleInof *model.AboutArticleModel, err error) {
+	upArticleInof, downArticleInof, err = db.SelectUpDownArticle(articleId)
 	return
 }

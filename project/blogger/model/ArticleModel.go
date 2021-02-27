@@ -25,6 +25,6 @@ type ArticleDetailModel struct {
 
 //AboutArticleModel 相关文章ID
 type AboutArticleModel struct {
-	Id    string `db:"id"`
+	Id    int64  `db:"id"`
 	Title string `db:"title"`
 }
