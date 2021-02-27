@@ -70,3 +70,33 @@ func InserArticleHandler(ctx *gin.Context) {
 
 	ctx.Redirect(http.StatusMovedPermanently, "/")
 }
+
+//AboutMeHandler 关于我
+func AboutMeHandler(ctx *gin.Context) {
+	ctx.HTML(http.StatusOK, "views/about.html", nil)
+}
+
+func LeaveIndexHandler(ctx *gin.Context) {
+	leaveItems, err := logic.GetAllLeave()
+	if err != nil {
+		fmt.Printf("查询留言失败%s\n", err)
+		ctx.HTML(http.StatusInternalServerError, "views/500.html", err)
+		return
+	}
+	ctx.HTML(http.StatusOK, "views/gbook.html", leaveItems)
+}
+
+//InserLeaveHandler 新增留言
+func InserLeaveHandler(ctx *gin.Context) {
+	comment := ctx.PostForm("comment")
+	author := ctx.PostForm("author")
+	email := ctx.PostForm("email")
+
+	err := logic.InsertLeave(author, email, comment)
+	if err != nil {
+		fmt.Printf("新增留言失败：%s\n", err)
+		ctx.HTML(http.StatusInternalServerError, "views/500.html", err)
+		return
+	}
+	//ctx.Redirect(http.StatusMovedPermanently, "leave/new")
+}

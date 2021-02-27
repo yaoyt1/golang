@@ -16,12 +16,15 @@ func main() {
 	}
 
 	route.LoadHTMLGlob("project/blogger/views/*")
+	route.GET("/about/me",controller.AboutMeHandler)
 	route.Static("/static/", "project/blogger/static")
 	route.GET("/", controller.IndexHandler)
 	route.GET("/article/detail",controller.ArticleDetailHandler)
 	route.GET("/article/new",controller.NewArticleHandler)
 	route.POST("/article/submit/",controller.InserArticleHandler)
-
+	route.GET("/leave/index/",controller.LeaveIndexHandler)
+	route.POST("/leave/submit/",controller.InserLeaveHandler)
+	
 	_ = route.Run(":8080")
 }
 
