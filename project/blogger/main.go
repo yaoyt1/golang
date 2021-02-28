@@ -9,7 +9,7 @@ import (
 func main() {
 	route := gin.Default()
 
-	dns := "root:123456@tcp(localhost:3306)/blogger?parseTime=true"
+	dns := "yaoyoutian:123456@tcp(localhost:3306)/yaoyoutian?parseTime=true"
 	err := db.Init(dns)
 	if err != nil {
 		panic(err)
