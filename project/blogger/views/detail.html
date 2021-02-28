@@ -142,6 +142,9 @@ window.onload = function ()
       <ul class="navbor">
         <li><a href="/about/me">关于我</a></li>
           <ul>
+            {{range .categoryItems}}
+            <li><a href="/category?categoryId={{.CategoryId}}">{{.CategoryName}}</a></li>
+            {{end}}
           </ul>
         </li>
       </ul>

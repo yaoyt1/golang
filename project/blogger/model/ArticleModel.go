@@ -28,3 +28,10 @@ type AboutArticleModel struct {
 	Id    int64  `db:"id"`
 	Title string `db:"title"`
 }
+
+//AssistArticleModel 辅助文章model
+type AssistArticleModel struct {
+	Id      int64  `db:"id"`
+	Title   string `db:"title"`
+	Summary string `db:"summary"`
+}

@@ -89,3 +89,17 @@ func SelectArticleByCategoryId(categoryid int64, pageNum, pageSize int) (items [
 	DB.Select(&items, sqlStr, categoryid, pageNum, pageSize)
 	return
 }
+
+//SelectClickRandkingArticle点击排行
+func SelectClickRandkingArticle() (clickArticle []*model.AssistArticleModel, err error) {
+	sqlStr := "select id,title,summary from Article order by viewcount desc limit 5"
+	err = DB.Select(&clickArticle, sqlStr)
+	return
+}
+
+//SelectCommentRandkingArticle 评论排行
+func SelectCommentRandkingArticle() (commentArticle []*model.AssistArticleModel, err error) {
+	sqlStr := "select id,title,summary from Article order by commentcount desc limit 5"
+	err = DB.Select(&commentArticle, sqlStr)
+	return
+}

@@ -183,3 +183,14 @@ func GetArticleByCategoryId(categoryid int64, pageNum, pageSize int) (items []*m
 	}
 	return
 }
+
+//GetRandkingAricle 得到排行榜数据
+func GetRandkingAricle() (clickArticleInfo, commentArticleInfo []*model.AssistArticleModel, err error) {
+	clickArticleInfo, err = db.SelectClickRandkingArticle()
+	if err != nil {
+		return
+	}
+
+	commentArticleInfo, err = db.SelectCommentRandkingArticle()
+	return
+}

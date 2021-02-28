@@ -24,9 +24,17 @@ func IndexHandler(ctx *gin.Context) {
 		fmt.Printf("查询分类报错：%s\n", err)
 	}
 
+	//查询排行榜数据
+	clickRandkingItems, commentRandkingItems, err := logic.GetRandkingAricle()
+	if err != nil {
+		fmt.Printf("查询排行榜数据报错：%s\n", err)
+	}
+
 	var m map[string]interface{} = make(map[string]interface{}, 5)
 	m["articlerecordItems"] = articlerecordItems
 	m["categoryItems"] = categoryItems
+	m["clickRandkingItems"] = clickRandkingItems
+	m["commentRandkingItems"] = commentRandkingItems
 
 	ctx.HTML(http.StatusOK, "views/index.html", m)
 }
@@ -69,12 +77,19 @@ func ArticleDetailHandler(ctx *gin.Context) {
 		fmt.Printf("获取上下文章失败：%s\n", err)
 	}
 
+	//查询所有分类
+	categoryItems, err := logic.GetAllCategory()
+	if err != nil {
+		fmt.Printf("查询分类报错：%s\n", err)
+	}
+
 	var m = make(map[string]interface{}, 5)
 	m["articleDetailItem"] = articleDetailItem
 	m["aboutArticleitems"] = aboutArticleitems
 	m["upArticleInof"] = upArticleInof
 	m["downArticleInof"] = downArticleInof
 	m["commentItems"] = commentItems
+	m["categoryItems"] = categoryItems
 
 	ctx.HTML(http.StatusOK, "views/detail.html", m)
 }
@@ -192,9 +207,17 @@ func CategoryArticleHandler(ctx *gin.Context) {
 		fmt.Printf("查询分类报错：%s\n", err)
 	}
 
+	//查询排行榜数据
+	clickRandkingItems, commentRandkingItems, err := logic.GetRandkingAricle()
+	if err != nil {
+		fmt.Printf("查询排行榜数据报错：%s\n", err)
+	}
+
 	var m map[string]interface{} = make(map[string]interface{}, 5)
 	m["articlerecordItems"] = categoryArticleItem
 	m["categoryItems"] = categoryItems
+	m["clickRandkingItems"] = clickRandkingItems
+	m["commentRandkingItems"] = commentRandkingItems
 
 	ctx.HTML(http.StatusOK, "views/index.html", m)
 
