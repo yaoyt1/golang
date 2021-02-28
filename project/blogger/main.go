@@ -58,6 +58,9 @@ func main() {
 	//文章分类列表
 	route.GET("/category",controller.CategoryArticleHandler)
 
+	//文件上传接口
+	route.POST("/upload/file/", controller.UploadFile)
+	
 	_ = route.Run("0.0.0.0:9001")
 }
 

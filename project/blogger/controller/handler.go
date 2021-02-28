@@ -3,9 +3,14 @@ package controller
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"log"
 	"net/http"
+	"path"
+	"path/filepath"
 	"strconv"
+	"time"
 	"yytGithub/project/blogger/logic"
+	"yytGithub/project/blogger/util"
 )
 
 //IndexHandler文章首页
@@ -221,4 +226,31 @@ func CategoryArticleHandler(ctx *gin.Context) {
 
 	ctx.HTML(http.StatusOK, "views/index.html", m)
 
+}
+
+//UploadFile 上传图片
+func UploadFile(c *gin.Context) {
+	file, err := c.FormFile("upload")
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": err.Error(),
+		})
+		return
+	}
+
+	log.Println(file.Filename)
+	rootPath := util.GetRootDir()
+	u2 := time.Now().Unix()
+	if err != nil {
+		return
+	}
+
+	ext := path.Ext(file.Filename)
+	url := fmt.Sprintf("/static/upload/%d%s", u2, ext)
+	dst := filepath.Join(rootPath, url)
+	c.SaveUploadedFile(file, dst)
+	c.JSON(http.StatusOK, gin.H{
+		"uploaded": true,
+		"url":      url,
+	})
 }
