@@ -13,7 +13,7 @@ func InsertLeveMsg(userName, email, content string) (insertLeaveId int64, err er
 }
 
 func SelectAllLeveMsg() (models []*model.LeaveMsgModel, err error) {
-	sqlStr := "select id, username, email, content, createtime from LeaveMsg"
+	sqlStr := "select id, username, email, content, createtime from LeaveMsg order by createtime desc "
 	err = DB.Select(&models, sqlStr)
 	return
 }

@@ -127,9 +127,7 @@ func InserLeaveHandler(ctx *gin.Context) {
 		ctx.HTML(http.StatusInternalServerError, "views/500.html", err)
 		return
 	}
-
-	//todo : 提交成功，重定向本页
-	ctx.Redirect(http.StatusMovedPermanently, "leave/index")
+	ctx.Redirect(http.StatusMovedPermanently, "/leave/index/")
 }
 
 //InserCommentHandler 发表评论
@@ -154,7 +152,6 @@ func InserCommentHandler(ctx *gin.Context) {
 	}
 	fmt.Printf("评论成功：%d\n", commentId)
 
-	//todo : 提交成功，重定向本页
 	url := fmt.Sprintf("/article/detail?articleId=%d", articleId)
-	ctx.Redirect(http.StatusMultipleChoices, url)
+	ctx.Redirect(http.StatusMovedPermanently, url)
 }
