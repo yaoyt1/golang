@@ -62,3 +62,11 @@ func SelectUpDownArticle(articleId int64) (upArticle, downArticle *model.AboutAr
 	err = DB.Get(downArticle, sqlStr, articleId)
 	return
 }
+
+//SelectArticleByCategoryId 获取分类下的文章
+func SelectArticleByCategoryId(categoryid int64, pageNum, pageSize int) (items []*model.ArticleInfoModel, err error) {
+	sqlStr := `select id, categoryid, title, summary, viewcount, commentcount, status,
+       username, createtime, updatetime from Article where categoryid=? order by CreateTime DESC  limit ?,?`
+	DB.Select(&items, sqlStr, categoryid, pageNum, pageSize)
+	return
+}

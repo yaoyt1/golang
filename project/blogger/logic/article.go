@@ -141,3 +141,45 @@ func GetUpDownAricle(articleId int64) (upArticleInof, downArticleInof *model.Abo
 	upArticleInof, downArticleInof, err = db.SelectUpDownArticle(articleId)
 	return
 }
+
+func GetArticleByCategoryId(categoryid int64, pageNum, pageSize int) (items []*model.ArticleDetailModel, err error) {
+	if pageNum < 0 || pageSize <= 0 {
+		fmt.Printf("非法参数pageNum[%d],pageSize[%d]", pageNum, pageSize)
+		return
+	}
+
+	CategoryAricleItems, err := db.SelectArticleByCategoryId(categoryid, pageNum, pageSize)
+	if err != nil {
+		fmt.Printf("查询分类文章列表失败：%s\n", err)
+		return
+	}
+
+	if len(CategoryAricleItems) == 0 {
+		return
+	}
+
+	categoryIds := getAricleListCategoryId(CategoryAricleItems)
+	if len(categoryIds) == 0 {
+		return
+	}
+
+	categoryItems, err := db.SelectCategoryByIds(categoryIds)
+	if err != nil {
+		fmt.Printf("查询分类失败,错误：%s\n", err)
+		return
+	}
+
+	//聚合数据
+	for _, articlInfoItem := range CategoryAricleItems {
+		articleRecord := &model.ArticleDetailModel{
+			ArticleInfoModel: *articlInfoItem,
+		}
+		for _, categoryItem := range categoryItems {
+			if articlInfoItem.CategoryId == categoryItem.CategoryId {
+				articleRecord.CategoryModel = *categoryItem
+			}
+		}
+		items = append(items, articleRecord)
+	}
+	return
+}

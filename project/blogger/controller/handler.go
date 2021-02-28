@@ -10,13 +10,25 @@ import (
 
 //IndexHandler文章首页
 func IndexHandler(ctx *gin.Context) {
+	//查询所有文章
 	articlerecordItems, err := logic.GetAricleList(0, 25)
 	if err != nil {
 		fmt.Printf("查询文章列表报错：%s\n", err)
 		ctx.HTML(http.StatusInternalServerError, "views/500.html", nil)
 		return
 	}
-	ctx.HTML(http.StatusOK, "views/index.html", articlerecordItems)
+
+	//查询所有分类
+	categoryItems, err := logic.GetAllCategory()
+	if err != nil {
+		fmt.Printf("查询分类报错：%s\n", err)
+	}
+
+	var m map[string]interface{} = make(map[string]interface{}, 5)
+	m["articlerecordItems"] = articlerecordItems
+	m["categoryItems"] = categoryItems
+
+	ctx.HTML(http.StatusOK, "views/index.html", m)
 }
 
 //ArticleDetailHandler 文章详情
@@ -154,4 +166,36 @@ func InserCommentHandler(ctx *gin.Context) {
 
 	url := fmt.Sprintf("/article/detail?articleId=%d", articleId)
 	ctx.Redirect(http.StatusMovedPermanently, url)
+}
+
+//CategoryArticleHandler 文章分类列表
+func CategoryArticleHandler(ctx *gin.Context) {
+	categoryIdStr := ctx.Query("categoryId")
+
+	categoryId, err := strconv.ParseInt(categoryIdStr, 10, 64)
+	if err != nil {
+		fmt.Printf("非法文章Id:%d\n", categoryId)
+		ctx.HTML(http.StatusInternalServerError, "views/500.html", nil)
+		return
+	}
+
+	categoryArticleItem, err := logic.GetArticleByCategoryId(categoryId, 0, 50)
+	if err != nil {
+		fmt.Printf("查询分类文章报错:%s\n", err)
+		ctx.HTML(http.StatusInternalServerError, "views/500.html", nil)
+		return
+	}
+
+	//查询所有分类
+	categoryItems, err := logic.GetAllCategory()
+	if err != nil {
+		fmt.Printf("查询分类报错：%s\n", err)
+	}
+
+	var m map[string]interface{} = make(map[string]interface{}, 5)
+	m["articlerecordItems"] = categoryArticleItem
+	m["categoryItems"] = categoryItems
+
+	ctx.HTML(http.StatusOK, "views/index.html", m)
+
 }

@@ -39,6 +39,9 @@ func main() {
 	//评论提交
 	route.POST("/comment/submit/",controller.InserCommentHandler)
 	
+	//文章分类列表
+	route.GET("/category",controller.CategoryArticleHandler)
+
 	_ = route.Run(":8080")
 }
 
