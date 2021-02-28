@@ -25,12 +25,31 @@ func SelectArticleList(pageNum, pageSize int) (articlInfoItems []*model.ArticleI
 }
 
 //SelectArticleDetailById 获取文章详细
-func SelectArticleDetailById(categoryid int64) (articlDetailItem *model.ArticleDetailModel, err error) {
+func SelectArticleDetailById(articleId int64) (articlDetailItem *model.ArticleDetailModel, err error) {
 	articlDetailItem = new(model.ArticleDetailModel)
+	tx, err := DB.Begin()
+	if err != nil {
+		tx.Rollback()
+		return
+	}
+
 	sqlStr := `select id, categoryid, content, title, summary, viewcount, commentcount, status,
        username, createtime, updatetime from Article where status=1 and id=? `
 
-	err = DB.Get(articlDetailItem, sqlStr, categoryid)
+	err = DB.Get(articlDetailItem, sqlStr, articleId)
+	if err != nil {
+		tx.Rollback()
+		return
+	}
+
+	sqlStr = "update Article set  ViewCount=ViewCount+1 where Id=?"
+	_, err = DB.Exec(sqlStr, articleId)
+	if err != nil {
+		tx.Rollback()
+		return
+	}
+
+	tx.Commit()
 	return
 }
 

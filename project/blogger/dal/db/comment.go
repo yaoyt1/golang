@@ -4,14 +4,28 @@ import "yytGithub/project/blogger/model"
 
 //InserComment
 func InserComment(userName, email, content string, articleId int64) (commentId int64, err error) {
-	commentId = -1
-	sqlStr := "insert into Comment (username, email,  content, articleid) values (?,?,?,?)"
-	result, err := DB.Exec(sqlStr, userName, email, content, articleId)
+	tx, err := DB.Begin()
 	if err != nil {
 		return
 	}
 
+	commentId = -1
+	sqlStr := "insert into Comment (username, email,  content, articleid) values (?,?,?,?)"
+	result, err := DB.Exec(sqlStr, userName, email, content, articleId)
+	if err != nil {
+		tx.Rollback()
+		return
+	}
+
+	//更新评论数
+	sqlStr = "update Article set  commentcount=commentcount+1 where Id=?"
+	_, err = DB.Exec(sqlStr, articleId)
+	if err != nil {
+		tx.Rollback()
+	}
+
 	commentId, err = result.LastInsertId()
+	tx.Commit()
 	return
 }
 
