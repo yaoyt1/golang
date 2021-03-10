@@ -1,7 +1,8 @@
 package memory
 
 import (
-	errorCode "../errorCode/sessionErrorCode"
+	"errors"
+	"session/errorCode"
 	"sync"
 )
 
@@ -23,7 +24,7 @@ func (ms *MemorySession) Get(key string) (value interface{}, err error) {
 
 	value, ok := ms.data[key]
 	if ok {
-		err = errorCode.MemorySessionNotExists
+		err = errors.New(errorCode.MemorySessionNotExists)
 	}
 	return
 }

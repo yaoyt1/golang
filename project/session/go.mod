@@ -1,3 +1,3 @@
-module yytGithub/project/session
+module session
 
 go 1.13
