@@ -6,6 +6,7 @@ import (
 	"sync"
 )
 
+//MemorySession session
 type MemorySession struct {
 	data    map[string]interface{}
 	rwMutex sync.RWMutex
