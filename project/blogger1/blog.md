@@ -24,5 +24,12 @@
 2. github.com/go-ini/ini    配置库
 3. log  日志库
 4. github.com/jinzhu/gorm [gorm 官网文档](https://gorm.io/docs/)
-5. 
+5. github.com/astaxie/beego/validation 表单验证
 
+**** 
+
+## 定义接口
+1. 获取标签列表 get （"/tags"）
+2. 新建标签列表 post（"/tags"）
+3. 更新指定标签列表 put（"/tags/:id"）
+4. 删除指定标签列表 delete（"/tags/:id"）

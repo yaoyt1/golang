@@ -81,7 +81,7 @@ func loadDb() {
 	host := section.Key("Host").String()
 	port := section.Key("Port").In("3306", []string{"3306"})
 	TablePrefix = section.Key("TablePrefix").String()
-	dataBaseName := section.Key("DataBaseName").In("BloggerGin", []string{"BloggerGin", "Blogger"})
+	dataBaseName := section.Key("DataBaseName").In("BloggerGin", []string{"yaoyoutian", "BloggerGin"})
 
 	DbDns = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true", user, pwd, host, port, dataBaseName)
 }
