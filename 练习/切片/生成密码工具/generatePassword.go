@@ -34,7 +34,7 @@ func terminalPara() {
 
 // 生成密码
 func generatePwd() (pwd string) {
-	var pwds []byte = make([]byte, flagLength, flagLength)
+	var pwds = make([]byte, flagLength, flagLength)
 	var sourceStr string
 
 	switch flagType {

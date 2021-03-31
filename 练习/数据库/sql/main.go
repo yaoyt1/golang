@@ -44,7 +44,7 @@ func main() {
 //go自动做了数据库连接池，所以我们不用维护db
 //但是如果查询出结果集没有解析，我们需要把结果集关闭掉
 func dbQueryRow() {
-	var sqlStr string = "SELECT DEPTNO,DNAME,LOC FROM dept where DEPTNO=?"
+	var sqlStr = "SELECT DEPTNO,DNAME,LOC FROM dept where DEPTNO=?"
 	row := db.QueryRow(sqlStr, 1)
 
 	var deptData dept
@@ -60,7 +60,7 @@ func dbQueryRow() {
 //dbQuery 查询多行
 //多行解析的时候， 并没有关闭， 需要手动关闭
 func dbQuery() {
-	var sqlStr string = "SELECT DEPTNO,DNAME,LOC FROM dept where DEPTNO>0"
+	var sqlStr = "SELECT DEPTNO,DNAME,LOC FROM dept where DEPTNO>0"
 	row, err := db.Query(sqlStr)
 
 	if err != nil {
@@ -88,7 +88,7 @@ func dbQuery() {
 
 //dbInsertValues 新增数据
 func dbInsertValues() {
-	var sqlStr string = "insert dept (DNAME,LOC) values(?,?)"
+	var sqlStr = "insert dept (DNAME,LOC) values(?,?)"
 	result, err := db.Exec(sqlStr, "yyt", "y")
 
 	if err != nil {
@@ -103,7 +103,7 @@ func dbInsertValues() {
 
 //dbUpdateValues 修改
 func dbUpdateValues(id int) {
-	var sqlStr string = "update dept set  DNAME='y1' where DEPTNO=?"
+	var sqlStr = "update dept set  DNAME='y1' where DEPTNO=?"
 	result, err := db.Exec(sqlStr, id)
 
 	if err != nil {
@@ -117,7 +117,7 @@ func dbUpdateValues(id int) {
 
 //dbUpdateValues 修改
 func dbDeleteValues(id int) {
-	var sqlStr string = "delete from dept where DEPTNO=?"
+	var sqlStr = "delete from dept where DEPTNO=?"
 	result, err := db.Exec(sqlStr, id)
 
 	if err != nil {
@@ -134,7 +134,7 @@ func dbDeleteValues(id int) {
 //然后在把数据传过去
 //这样当有大量重复sql ，sql服务可以使用sql服务器的缓存
 func dbPrepareQuery() {
-	var sqlStr string = "SELECT DEPTNO,DNAME,LOC FROM dept where DEPTNO>?"
+	var sqlStr = "SELECT DEPTNO,DNAME,LOC FROM dept where DEPTNO>?"
 	stmt, err := db.Prepare(sqlStr) //先把sql 命令传到sql服务器上
 
 	if err != nil {
@@ -183,7 +183,7 @@ func dbTrian() {
 		return
 	}
 
-	var sqlStr string = "update dept set  DNAME='y12' where DEPTNO=?"
+	var sqlStr = "update dept set  DNAME='y12' where DEPTNO=?"
 	_, err = conn.Exec(sqlStr, 6)
 
 	if err != nil {

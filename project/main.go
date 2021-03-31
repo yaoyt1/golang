@@ -16,7 +16,7 @@ func main() {
 }
 
 func initLogger(typeName, logPath, logName string, level string) (err error) {
-	var config map[string]string = map[string]string{
+	var config = map[string]string{
 		"log_level":    level,
 		"log_filePath": logPath,
 		"log_fileName": logName,

@@ -51,7 +51,7 @@ func chanelInOut1() {
 
 //chan实现goroutine同步
 func goroutineSync() {
-	var c chan bool = make(chan bool)
+	var c = make(chan bool)
 	go helloWord(c)
 	<-c
 	fmt.Println("goroutine 同步完成")
@@ -80,7 +80,7 @@ func writeChan(c chan<- int) {
 
 //chanel 循环
 func forRangeChan() {
-	var c chan int = make(chan int)
+	var c = make(chan int)
 	go func(a chan int) {
 		for i := 0; i < 5; i++ {
 			a <- i

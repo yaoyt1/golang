@@ -45,11 +45,11 @@ func UnConfigSerialization(cofigData []byte, result interface{}) (err error) {
 
 	//分析配置文件内容
 	linArr := strings.Split(string(cofigData), "\n")
-	var linLen int                    //每一行的行数
-	var linFirst byte                 //每一行第一个文字
-	var sectionName string            //配置文件节点
-	var lastSectionName string        //上一个配置文件节点
-	var sectionItemJudge string = "=" //节点内容判断
+	var linLen int             //每一行的行数
+	var linFirst byte          //每一行第一个文字
+	var sectionName string     //配置文件节点
+	var lastSectionName string //上一个配置文件节点
+	var sectionItemJudge = "=" //节点内容判断
 	var sectionItemJudgeIndex int
 
 	for _, linItem := range linArr {

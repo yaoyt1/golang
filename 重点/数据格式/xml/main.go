@@ -44,7 +44,7 @@ func readJson() {
 	fmt.Printf("反序列化：%#v", s)
 }
 func writeJson() {
-	var itmes Servers = Servers{
+	var itmes = Servers{
 		Name: xml.Name{
 			Space: "s",
 			Local: "ss",

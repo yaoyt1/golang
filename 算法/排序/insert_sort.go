@@ -19,7 +19,7 @@ func insert_sort(a [5]int) [5]int {
 }
 
 func main() {
-	var i [5]int = [5]int{2, 4, 3, 1, 7}
+	var i = [5]int{2, 4, 3, 1, 7}
 	j := insert_sort(i)
 	fmt.Println(i)
 	fmt.Println(j)

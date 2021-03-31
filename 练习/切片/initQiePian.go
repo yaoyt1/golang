@@ -3,8 +3,8 @@ package main
 import "fmt"
 
 func test1() {
-	var arr [5]int = [5]int{1, 2, 3, 4, 5}
-	var p []int = arr[2:3]
+	var arr = [5]int{1, 2, 3, 4, 5}
+	var p = arr[2:3]
 	fmt.Printf("切片： %T \t %v \t len()=%d \t cap()=%d \n", p, p, len(p), cap(p))
 	p = append(p, 6)
 	fmt.Printf("切片： %T \t %v \t len()=%d \t cap()=%d \n", p, p, len(p), cap(p))

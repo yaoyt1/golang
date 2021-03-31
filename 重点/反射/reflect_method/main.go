@@ -20,7 +20,7 @@ func (s *student) StudentPrint() {
 }
 
 func main() {
-	var s student = student{Name: "yyt", Age: 18, Class: "高二三班"}
+	var s = student{Name: "yyt", Age: 18, Class: "高二三班"}
 
 	v := reflect.ValueOf(&s)
 	t := v.Type()

@@ -68,7 +68,7 @@ func printResult(result chan *result) {
 
 //producer 生成者
 func producer(jobChan chan *job) {
-	var id int = 0
+	var id = 0
 	for {
 		id++
 		number := rand.Int()

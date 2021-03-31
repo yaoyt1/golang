@@ -9,7 +9,7 @@ func main() {
 	cpu := runtime.NumCPU()
 	fmt.Println("cpu个数：", cpu)
 	runtime.GOMAXPROCS(cpu)
-	var i int = 0
+	var i = 0
 	for {
 		i++
 	}

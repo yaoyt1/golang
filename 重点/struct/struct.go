@@ -19,7 +19,7 @@ func structIntoTest1() {
 	fmt.Printf("学生%s\t 年龄：%d岁\n", zhangshan.name, zhangshan.age)
 	fmt.Println(zhangshan)
 
-	var lisi student = student{name: "lisi", age: 18}
+	var lisi = student{name: "lisi", age: 18}
 	fmt.Printf("学生%s\t 年龄：%d岁\n", lisi.name, lisi.age)
 	fmt.Println(lisi)
 

@@ -60,7 +60,7 @@ func mapInit() {
 	fmt.Printf("字典%v \n", a)
 
 	//直接声明字典的时候赋值
-	var b map[string]int = map[string]int{
+	var b = map[string]int{
 		"yyt":        10,
 		"yaoyoutian": 20,
 	}

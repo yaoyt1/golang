@@ -39,7 +39,7 @@ func main() {
 //dbQueryRow 查询单行
 func dbQueryRow() {
 	var deptData dept
-	var sqlStr string = "SELECT DEPTNO,DNAME,LOC FROM dept where DEPTNO=?"
+	var sqlStr = "SELECT DEPTNO,DNAME,LOC FROM dept where DEPTNO=?"
 	err := db.Get(&deptData, sqlStr, 1)
 
 	if err != nil {
@@ -53,7 +53,7 @@ func dbQueryRow() {
 //dbQuery 查询多行
 func dbQuery() {
 	var deptData []dept
-	var sqlStr string = "SELECT DEPTNO,DNAME,LOC FROM dept where DEPTNO>0"
+	var sqlStr = "SELECT DEPTNO,DNAME,LOC FROM dept where DEPTNO>0"
 	err := db.Select(&deptData, sqlStr)
 	if err != nil {
 		fmt.Printf("sql 查询数据失败：%#v\n", err)
@@ -65,7 +65,7 @@ func dbQuery() {
 
 //dbInsertValues 新增数据
 func dbInsertValues() {
-	var sqlStr string = "insert dept (DNAME,LOC) values(?,?)"
+	var sqlStr = "insert dept (DNAME,LOC) values(?,?)"
 	result, err := db.Exec(sqlStr, "yyt", "y")
 
 	if err != nil {

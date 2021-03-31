@@ -35,7 +35,7 @@ func IndexHandler(ctx *gin.Context) {
 		fmt.Printf("查询排行榜数据报错：%s\n", err)
 	}
 
-	var m map[string]interface{} = make(map[string]interface{}, 5)
+	var m = make(map[string]interface{}, 5)
 	m["articlerecordItems"] = articlerecordItems
 	m["categoryItems"] = categoryItems
 	m["clickRandkingItems"] = clickRandkingItems
@@ -218,7 +218,7 @@ func CategoryArticleHandler(ctx *gin.Context) {
 		fmt.Printf("查询排行榜数据报错：%s\n", err)
 	}
 
-	var m map[string]interface{} = make(map[string]interface{}, 5)
+	var m = make(map[string]interface{}, 5)
 	m["articlerecordItems"] = categoryArticleItem
 	m["categoryItems"] = categoryItems
 	m["clickRandkingItems"] = clickRandkingItems

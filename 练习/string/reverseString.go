@@ -5,8 +5,8 @@ import "fmt"
 // reverseStringV1 只适合英文，数字， 只占一个字节的文字
 // 这里换成中文的话会乱码
 func reverseStringV1() {
-	var str string = "123456"
-	var byteSlice []byte = []byte(str)
+	var str = "123456"
+	var byteSlice = []byte(str)
 
 	for i := 0; i < len(byteSlice)/2; i++ {
 		byteSlice[len(byteSlice)-i-1], byteSlice[i] = byteSlice[i], byteSlice[len(byteSlice)-i-1]
@@ -18,8 +18,8 @@ func reverseStringV1() {
 
 // reverseStringV2 适合英文，数字， 中文
 func reverseStringV2() {
-	var str string = "我爱中华"
-	var runeSlice []rune = []rune(str)
+	var str = "我爱中华"
+	var runeSlice = []rune(str)
 
 	for i := 0; i < len(runeSlice)/2; i++ {
 		runeSlice[len(runeSlice)-i-1], runeSlice[i] = runeSlice[i], runeSlice[len(runeSlice)-i-1]
@@ -34,7 +34,7 @@ func reverseStringV2() {
 func strIsHuiWei() {
 	str := "上海自来水来自海上"
 
-	var runeSlice []rune = []rune(str)
+	var runeSlice = []rune(str)
 
 	for i := 0; i < len(runeSlice)/2; i++ {
 		runeSlice[len(runeSlice)-i-1], runeSlice[i] = runeSlice[i], runeSlice[len(runeSlice)-i-1]

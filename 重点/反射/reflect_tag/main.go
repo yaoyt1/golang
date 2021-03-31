@@ -21,7 +21,7 @@ func (s *student) StudentPrint() {
 }
 
 func main() {
-	var s student = student{Name: "yyt", Age: 18, Class: "高二三班"}
+	var s = student{Name: "yyt", Age: 18, Class: "高二三班"}
 	t := reflect.TypeOf(s)
 
 	fied0 := t.Field(0)

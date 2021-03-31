@@ -24,7 +24,7 @@ func main() {
 	var i integer = 10
 	i.print()
 
-	var p *people = new(people)
+	var p = new(people)
 	p.name = "yyt"
 	p.age = 18
 	fmt.Printf("使用方法前%#v\n", p)

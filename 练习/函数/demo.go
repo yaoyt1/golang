@@ -26,7 +26,7 @@ func main() {
 	num := testFunc()
 	fmt.Println("1: num = ", num)
 
-	var s []int = []int{1, 2, 4, 5}
+	var s = []int{1, 2, 4, 5}
 	min := testfunc1(s...)
 	fmt.Printf("2: 最小值是%d\n", min)
 

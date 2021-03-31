@@ -12,7 +12,7 @@ func main() {
 		stuSex  string
 	}
 
-	var zhangSan *student = &student{
+	var zhangSan = &student{
 		stuName: "yyt",
 		stuAge:  18,
 		stuSex:  "男",

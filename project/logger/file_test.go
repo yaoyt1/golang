@@ -27,7 +27,7 @@ func TestConsoleDebug(t *testing.T) {
 }
 
 func TestFileDebugMap(t *testing.T) {
-	var config map[string]string = map[string]string{
+	var config = map[string]string{
 		"log_level":    "1",
 		"log_filePath": "/Users/yaoyt98/Library/Mobile Documents/com~apple~CloudDocs/code/git/github_golang/project/logger",
 		"log_fileName": "log",
@@ -47,7 +47,7 @@ func TestFileDebugMap(t *testing.T) {
 }
 
 func TestConsoleDebugMap(t *testing.T) {
-	var config map[string]string = map[string]string{
+	var config = map[string]string{
 		"log_level":    "1",
 		"log_filePath": "/Users/yaoyt98/Library/Mobile Documents/com~apple~CloudDocs/code/git/github_golang/project/logger",
 		"log_fileName": "log",

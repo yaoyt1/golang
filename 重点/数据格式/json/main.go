@@ -47,7 +47,7 @@ func readJson() {
 	fmt.Printf("反序列化：%#v", j)
 }
 func writeJson() {
-	var itmes jsondatas = jsondatas{
+	var itmes = jsondatas{
 		Id:      1,
 		Version: "1.0",
 	}

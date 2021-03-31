@@ -16,7 +16,7 @@ func arrayAllElementSum(array [5]int) (allElementSum int) {
 
 //计算下标之和
 func twoSum(array [5]int, target int) {
-	var otherNum int = 0
+	var otherNum = 0
 	for i := 0; i < len(array); i++ {
 		otherNum = target - array[i]
 		for j := i + 1; j < len(array); j++ {
@@ -41,7 +41,7 @@ func testArray() {
 	num := arrayAllElementSum(array)
 	fmt.Println(num)
 
-	var array1 [5]int = [5]int{10, 20, 30, 40, 50}
+	var array1 = [5]int{10, 20, 30, 40, 50}
 	twoSum(array1, 60)
 }
 
